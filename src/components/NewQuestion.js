@@ -5,8 +5,8 @@ import { handleAddQuestion } from "../actions/questions"
 
 class NewQuestion extends Component {
   state = {
-    optionOne: "",
-    optionTwo: "",
+    optOne: "",
+    optTwo: "",
     message: { hidden: true, content: "" }
   }
 
@@ -15,10 +15,10 @@ class NewQuestion extends Component {
   }
 
   handleClick = async () => {
-    const { optionOne: optionOneText, optionTwo: optionTwoText } = this.state
+    const { optOne: optOneText, optTwo: optTwoText } = this.state
     const { authedUser: author, history, resetActiveIndexToZero } = this.props
 
-    if (!optionOneText || !optionTwoText) {
+    if (!optOneText || !optTwoText) {
       this.setState({
         message: {
           hidden: false,
@@ -35,8 +35,8 @@ class NewQuestion extends Component {
       })
     }
     await this.props.dispatch(handleAddQuestion({
-      optionOneText,
-      optionTwoText,
+      optOneText,
+      optTwoText,
       author
     }))
     resetActiveIndexToZero()
@@ -60,17 +60,17 @@ class NewQuestion extends Component {
                 <Form>
                   <Form.Field>
                     <Input
-                      id="optionOne"
+                      id="optOne"
                       placeholder="Enter Option One Text Here"
-                      value={this.state.optionOne}
+                      value={this.state.optOne}
                       onChange={this.handleOnChange}
                     />
                   </Form.Field>
                   <Form.Field>
                     <Input
-                      id="optionTwo"
+                      id="optTwo"
                       placeholder="Enter Option One Text Here"
-                      value={this.state.optionTwo}
+                      value={this.state.optTwo}
                       onChange={this.handleOnChange}
                     />
                   </Form.Field>
